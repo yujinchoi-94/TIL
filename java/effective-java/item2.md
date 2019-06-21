@@ -34,3 +34,95 @@ Static factories and constructors share a limitation: they do not scale well to 
     - If you start out with constructors or static factories and switch to a builder when the class evolves to the point where the numbers of parameters gets out of hand, the obsolete constructors or static factories will stick out like a sore thumb. Therefore, it's often better to start with a builder in the first place.
   - Summary
     - The Builder patter is a good choice when designing classes whose constructors or static factories would have more than a handful of parameters, especially if many of the parameters are optional or of identical type.
+
+---
+```java
+package com.yujinchoi.itineraryproducer.model;
+
+public class SearchRequest {
+    // required
+    private final String country;
+    private final String currency;
+    private final String locale;
+    private final String originPlace;
+    private final String destinationPlace;
+    private final String outboundDate;
+    private final int adults;
+    // optional
+    private final String inboundDate;
+    private final String cabinClass;
+
+    public SearchRequest(Builder builder) {
+        this.country = builder.country;
+        this.currency = builder.currency;
+        this.locale = builder.locale;
+        this.originPlace = builder.originPlace;
+        this.destinationPlace = builder.destinationPlace;
+        this.outboundDate = builder.outboundDate;
+        this.inboundDate = builder.inboundDate;
+        this.adults = builder.adults;
+        this.cabinClass = builder.cabinClass;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchRequest{" +
+            "country='" + country + '\'' +
+            ", currency='" + currency + '\'' +
+            ", locale='" + locale + '\'' +
+            ", originPlace='" + originPlace + '\'' +
+            ", destinationPlace='" + destinationPlace + '\'' +
+            ", outboundDate='" + outboundDate + '\'' +
+            ", inboundDate='" + inboundDate + '\'' +
+            ", adults=" + adults +
+            ", cabinClass='" + cabinClass + '\'' +
+            '}';
+    }
+
+    public static class Builder {
+        // required
+        private final String country;
+        private final String currency;
+        private final String locale;
+        private final String originPlace;
+        private final String destinationPlace;
+        private final String outboundDate;private final int adults;
+
+        // optional
+        private String inboundDate = "";
+        private String cabinClass = "";
+
+        public Builder(String country, String currency, String locale, String originPlace, String destinationPlace,
+            String outboundDate, int adults) {
+            this.country = country;
+            this.currency = currency;
+            this.locale = locale;
+            this.originPlace = originPlace;
+            this.destinationPlace = destinationPlace;
+            this.outboundDate = outboundDate;
+            this.adults = adults;
+        }
+
+        public Builder inboundDate(String inboundDate) {
+            this.inboundDate = inboundDate;
+            return this;
+        }
+
+        public Builder cabinClass(String cabinClass) {
+            this.cabinClass = cabinClass;
+            return this;
+        }
+
+        public SearchRequest build() {
+            return new SearchRequest(this);
+        }
+    }
+}
+
+```
+```java
+SearchRequest searchRequest = new SearchRequest.Builder(country, currency, locale, originPlace, destinationPlace, outboundDate, adults)
+        .inboundDate(inboundDate)
+        .cabinClass(cabinClass)
+        .build();
+```
