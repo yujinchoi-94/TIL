@@ -8,7 +8,7 @@
 
   - In the absence of explicit consturctors, however, the compiler provides a public, parameterless default constructor. To a user, this constructor is indistinguishable from any other.
 
-- Attempting to enforce noninstantiablility by makind a class abstract does not work.
+- Attempting to enforce noninstantiablility by making a class abstract does not work.
 
   - The class can be subclassed and the subclass instantiated. Furthermore, it misleads the user into thinking the class was designed for inheritance.
 
@@ -24,14 +24,16 @@
 
   - Because the explicit constructor is private, it is inaccessible outside the class.  The `AssertionError` isn't strictly required, but it provides insurance in the case the constructor is accidentally invoked from within the class.
 
-- As a side effect, this idiom also prevents the class from being subclassed. All constructors must invoke a superclass constructor, explicitly or implicitly, and a subclass would have no accessible superclass constructor to invoke.
+- Side effect
+
+  - this idiom also prevents the class from being subclassed. All constructors must invoke a superclass constructor, explicitly or implicitly, and a subclass would have no accessible superclass constructor to invoke.
 
   
 
 <details>
   <summary>Utility classes should not have public constructors (from sonar qube coding rules)</summary>
 
-  
+
 
   Utility classes, which are collections of static members, are not meant to be instantiated. Even abstract utility classes, which can be extended, should not have public constructors.
 
