@@ -25,25 +25,25 @@ public abstract class Car {
 ```
 
 ```java
-package com.yujinchoi.springstudy;
-
-public class Truck extends Car {
-    // Constructors are not inherited since they're not members.
-    public Truck(CarEngine carEngine, Wheel wheel) {
-        // Invoke the constructor of the superclass
-        super(carEngine, wheel);
-    }
-}
-
-```
-
-```java
 // It gets an error
 Truck truck = new Truck(carEngine(), wheel());
 ```
 
 - A subclass inherits all the *members* (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
+
   - You can write a subclass constructor that invokes the constructor of the superclass, either implicitly or by using the keyword `super`.
+
+    ```java
+    package com.yujinchoi.springstudy;
+    
+    public class Truck extends Car {
+        // Constructors are not inherited since they're not members.
+        public Truck(CarEngine carEngine, Wheel wheel) {
+            // Invoke the constructor of the superclass
+            super(carEngine, wheel);
+        }
+    }
+    ```
 
 https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
 
