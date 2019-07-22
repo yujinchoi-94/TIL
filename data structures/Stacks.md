@@ -34,7 +34,7 @@ return stack.Empty()
 
 If `stack.Empty()` returns `False`, it means unbalanced.
 
-## Array Implementation
+## Implementation with Array
 
 `Push()` will return an error if there is no more space in stack.
 
@@ -43,7 +43,7 @@ If `stack.Empty()` returns `False`, it means unbalanced.
 1. We have a maximum size, based on we initially allocated.
 2. We have potentially wasted space.
 
-## Linked List Implementation
+## Implementation with Linked List
 
 As long as you have available memory, you can keep adding,
 
