@@ -35,7 +35,7 @@ Queues are very useful for things like servers. Where you have got a bunch of op
 - Empty() : If read is equal to write, it's empty.
 - We have a buffer of at least one element that can't be written to, to make sure read and write are seperate and distinct if the queue is not empty.
 
-## Sumarry
+## Summary
 
 - Queues can be implemented with either a linked list (with tail pointer) or an array.
 - Each queue operation is O(1) : Enqueue, Dequeue, Empty.
