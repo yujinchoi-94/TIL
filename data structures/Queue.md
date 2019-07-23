@@ -27,11 +27,11 @@ Queues are very useful for things like servers. Where you have got a bunch of op
 - The queue would work correctly, but Dequeue would be O(n) time if the list were singly-linked with a tail pointer.
   - Dequeue would be O(n) time since PopBack is O(n) for a singly linked list.
 
-## Implementation with Array
+## Implementation with Array (Circular array)
 
 - The front of the array is the beginning of the queue.
-- read index: Dequeue from the read index. Read at the read index and then increment the read index.
-- write index : Where the enqueue operation should happen
+- read index: Where the next `Dequeue()` operation should happen.
+- write index : Where the `Enqueue()` operation should happen.
 - Empty() : If read is equal to write, it's empty.
 - We have a buffer of at least one element that can't be written to, to make sure read and write are seperate and distinct if the queue is not empty.
 
